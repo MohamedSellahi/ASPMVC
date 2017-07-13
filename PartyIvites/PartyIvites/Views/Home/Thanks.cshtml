@@ -1,7 +1,7 @@
 ﻿@model PartyIvites.Models.GuestResponse
 
 @{
-    Layout = null;
+   Layout = null;
 }
 
 <!DOCTYPE html>
@@ -10,16 +10,26 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Thanks</title>
+    <style>
+        body {
+            background-color: #F1F1F1;
+        }
+    </style>
+
 </head>
 <body>
-    <div> 
+  
+
+    <div class="text-center">
         <h1>Thank you, @Model.Name!</h1>
-        @if (Model.WillAttend == true) {
-           @:It's Great that you'rec coming. The drinks are already in the fridge!
+        <div class="lead">
+            @if (Model.WillAttend == true) {
+            @:It's Great that you'rec coming. The drinks are already in the fridge!
         }
-        else {
-           @:Sorry to hear that you can't make it, but thanks for letting us know.
+            else {
+            @:Sorry to hear that you can't make it, but thanks for letting us know.
         }
+        </div>
     </div>
 </body>
 </html>
