@@ -1,0 +1,35 @@
+﻿body {
+}
+
+.input-validation-error{
+    border: 1px solid #ff0000;
+    background-color:#fee;
+}
+
+.field-validation-error{
+    color:#ff0000;
+}
+
+.field-validation-valid{
+    display:none;
+}
+
+.validation-summary-errors{
+    font-weight:bold;
+    color:#ff0000;
+}
+
+.validation-summary-valid{
+    display:none;
+}
+
+
+/*customise some bootsrap elemetns*/
+.btn a {
+    color: white;
+    text-decoration: none
+}
+
+body {
+    background-color: #F1F1F1;
+}
