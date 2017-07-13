@@ -14,6 +14,7 @@ namespace PartyIvites.Controllers {
          // passing some data to the view 
          int hour = DateTime.Now.Hour;
          ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
+         ViewBag.Message = "Here is another message";
          return View();
       }
 
