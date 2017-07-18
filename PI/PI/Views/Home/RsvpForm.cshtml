@@ -1,0 +1,63 @@
+﻿@model PI.Models.GuestResponce
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RsvpForm</title>
+    <link rel="stylesheet" href="~/Content/Style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.css" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading text-center">
+                <h4>RSVP</h4>
+            </div>
+
+            <div class="panel-body">
+
+                @using(Html.BeginForm())
+            {
+                    @Html.ValidationSummary()
+
+                    <div class="form-group">
+                        <label>Your name:</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your emai</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your phone:</label>
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Will you attend? </label>
+                        @Html.DropDownListFor(x => x.WillAttend, new[]
+                       {
+                           new SelectListItem() {Text="Yes, I'll be there", Value = bool.TrueString},
+                           new SelectListItem() {Text="No, I can't come", Value = bool.FalseString},
+                       }, "Choose an option", new { @class = "form-control" })
+
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Submit RSVP" class="btn btn-success" />
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
