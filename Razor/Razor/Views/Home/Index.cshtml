@@ -1,0 +1,16 @@
+﻿@model Razor.Models.Product
+
+@{
+   ViewBag.Title = "Product Infos";
+   //Layout = "~/Views/_BasicLayout.cshtml";
+   /**
+    * this line has been moved to the _ViewStart file
+    * the default layout to be loaded 
+    * */
+}
+
+
+<div class="lead">
+    @Model.Name
+</div>
+
