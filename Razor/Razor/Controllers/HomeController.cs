@@ -20,5 +20,9 @@ namespace Razor.Controllers {
       public ActionResult Index() {
          return View(_myProduct);
       }
+
+      public ActionResult NameAndPrice() {
+         return View(_myProduct);
+      }
    }
 }
