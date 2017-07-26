@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
+using Moq;
+using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Entities;
+using SportsStore.Domain.Concrete;
+
 
 namespace SportsStore.WebUI.Infrastructure {
    public class NinjectDependencyResolver : IDependencyResolver {
@@ -28,6 +33,19 @@ namespace SportsStore.WebUI.Infrastructure {
 
       private void Addbindings() {
          // Bindings goes here
+         // this is a moq implementation of a repository 
+         Mock<IProductRepository> mock = new Mock<IProductRepository>();
+         mock.Setup(m => m.Products).Returns(
+            new List<Product> {
+               new Product {Name = "Footbal", Price = 25 },
+               new Product {Name = "Surf board", Price = 179},
+               new Product {Name = "Running shoes", Price = 95}
+            }
+            );
+         //_kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+         _kernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+
       }
 
 
