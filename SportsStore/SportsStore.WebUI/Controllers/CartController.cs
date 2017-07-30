@@ -48,12 +48,22 @@ namespace SportsStore.WebUI.Controllers {
       }
 
       //// GET: Cart
-      public ActionResult Index(Cart cart, string returnUrl) {
-         return View(new CartViewModel {
+      public ViewResult Index(Cart cart, string returnUrl) {
+         return View(new CartIndexViewModel {
             //Cart = GetCart(),
             Cart = cart, // provided by the model binder 
             ReturnUrl = returnUrl
          });
       }
-   }
+
+      public PartialViewResult Summary(Cart cart) {
+         return PartialView(cart);
+      }
+
+      public ViewResult Checkout() {
+         return View(new ShippingDetails());
+      }
+
+
+   }// end of class 
 }
