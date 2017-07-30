@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SportsStore.Domain.Entities {
    public class Cart {
-      private List<CartLine> _lilneCollection = new List<CartLine>();
+      private List<CartLine> _lineCollection = new List<CartLine>();
 
       /// <summary>
       /// Gets the linesof the cart as Ienumerable object
@@ -14,16 +14,16 @@ namespace SportsStore.Domain.Entities {
       /// <value>
       /// The lines.
       /// </value>
-      public IEnumerable<CartLine> Lines { get { return _lilneCollection; }}
+      public IEnumerable<CartLine> Lines { get { return _lineCollection; }}
 
       public void AddItem(Product product, int quantity) {
          // see if the product exists in the cart 
          // if it exists increment by quantity, otherwise add product to cart 
-         CartLine line = _lilneCollection
+         CartLine line = _lineCollection
                         .Where(p => p.Product.ProductID == product.ProductID)
                         .FirstOrDefault();
          if (line == null) {
-            _lilneCollection.Add(new CartLine { Product = product, Quantity = quantity });
+            _lineCollection.Add(new CartLine { Product = product, Quantity = quantity });
          }
          else {
             line.Quantity += quantity;
@@ -31,16 +31,16 @@ namespace SportsStore.Domain.Entities {
       }
 
       public void RemoveLine(Product product) {
-         _lilneCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
+         _lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
       }
 
       public decimal ComputeTotalValue() {
-         return _lilneCollection.Sum(e => e.Product.Price * e.Quantity);
+         return _lineCollection.Sum(e => e.Product.Price * e.Quantity);
       }
 
 
       public void Clear() {
-         _lilneCollection.Clear();
+         _lineCollection.Clear();
       }
 
       
