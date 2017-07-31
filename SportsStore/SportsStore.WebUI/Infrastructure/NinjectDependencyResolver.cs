@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +21,6 @@ namespace SportsStore.WebUI.Infrastructure {
          Addbindings();
       }
 
-     
       public object GetService(Type serviceType) {
          return _kernel.TryGet(serviceType);
       }
@@ -44,6 +44,13 @@ namespace SportsStore.WebUI.Infrastructure {
             );
          //_kernel.Bind<IProductRepository>().ToConstant(mock.Object);
          _kernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+         // register email service 
+         EmailSettings emailSettings = new EmailSettings {
+            WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteFile"] ?? "false")
+         };
+
+         _kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
 
 
       }
