@@ -9,11 +9,19 @@
     <link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" type="text/css" rel="stylesheet" />
     <link href="~/Content/ErrorStyles.css" type="text/css" rel="stylesheet" />
+    @*<script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
 
     <title>@ViewBag.Title</title>
 </head>
 <body>
     <div>
+        @if (TempData["message"] != null) {
+            <div class="alert alert-success">
+                @TempData["message"]
+            </div>
+        }
         @RenderBody()
     </div>
 </body>
