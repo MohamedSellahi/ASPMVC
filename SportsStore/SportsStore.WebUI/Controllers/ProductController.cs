@@ -25,22 +25,32 @@ namespace SportsStore.WebUI.Controllers {
          // if category == null; we take all the elements 
          ProductsListViewModel model = new ProductsListViewModel {
             Products = _repository.Products.OrderBy(p => p.ProductID)
-                                           .Where(p => category==null || p.Category == category)
+                                           .Where(p => category == null || p.Category == category)
                                            .Skip((page - 1) * PageSize)
                                            .Take(PageSize),
             PaginInfo = new PagingInfo {
                CurrentPage = page,
                itemsPerPage = PageSize,
-               TotalItems = category==null?  // this is needed to correct thenumber of totalitems in the current category 
-               _repository.Products.Count():
-               _repository.Products.Where(e=>e.Category == category).Count()
+               TotalItems = category == null ?  // this is needed to correct thenumber of totalitems in the current category 
+               _repository.Products.Count() :
+               _repository.Products.Where(e => e.Category == category).Count()
             },
             CurrentCategory = category
          };
          return View(model);
       }
 
+      // get product  image from data base 
+      public FileContentResult GetImage(int productId) {
+         Product prod = _repository.Products.FirstOrDefault(p => p.ProductID == productId);
+         if (prod != null) {
+            return File(prod.ImageData, prod.ImageMimeType);
+         }
+         else {
+            return null;
+         }
+      }
+
+
    }
-
-
 }

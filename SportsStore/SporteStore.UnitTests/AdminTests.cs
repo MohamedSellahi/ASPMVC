@@ -83,7 +83,6 @@ namespace SportsStore.UnitTests {
          Assert.IsNull(result);
       }
 
-
 //       For the POST-processing Edit action method, i need to make sure that valid updates to the Product object that
 //       the model binder has created are passed to the product repository to be saved.i also want to check that invalid
 //       updates (where a model error exists) are not passed to the repository.
@@ -145,7 +144,6 @@ namespace SportsStore.UnitTests {
          // Assert - Ensure that the repo method delete was called with the proper argument 
          mock.Verify(m => m.DeleteProduct(product.ProductID));
       }
-
 
    }
 }
