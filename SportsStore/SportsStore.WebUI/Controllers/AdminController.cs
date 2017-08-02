@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
-using System.Linq;
 
 namespace SportsStore.WebUI.Controllers {
 
