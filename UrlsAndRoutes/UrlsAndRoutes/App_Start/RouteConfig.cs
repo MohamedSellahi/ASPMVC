@@ -10,9 +10,23 @@ namespace UrlsAndRoutes {
 
       public static void RegisterRoutes(RouteCollection routes) {
 
-         routes.MapRoute("Myroute", "{controller}/{action}/{id}",
-                          new { controller = "Home", action = "Index", id = "Defaultid"});
+        
+         //id = "DefaultId"}); // Default is a reserved key word 
+
+         // support for variable length URL segments
+        
+         Route myRoute = routes.MapRoute("AddControllerRoute", "Home/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            new[] { "UrlsAndRoutes.AdditionalControllers" });
+
+         // this tell MVC frame to look only in the name space i specify 
+         myRoute.DataTokens["UseNamespaceFallback"] = false;
+
+         routes.MapRoute("MyRouteCatchAll", "{controller}/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            new[] { "UrlsAndRoutes.Controllers" });
       }
+
 
       //public static void RegisterRoutes(RouteCollection routes) {
 
