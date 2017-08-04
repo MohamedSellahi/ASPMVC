@@ -4,17 +4,81 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Mvc.Routing.Constraints;
+using UrlsAndRoutes.Infrastructure;
 
 namespace UrlsAndRoutes {
    public class RouteConfig {
 
       public static void RegisterRoutes(RouteCollection routes) {
 
-        
+         // Enable attribute based routing 
+         routes.MapMvcAttributeRoutes();
+
+
+         // using custom route
+         // this will constain a route to additionalcontroiller Home, if the 
+         // useragent string contains chrome, whatever is the content of the url (catch all)
+         routes.MapRoute("CustomRoute", "{*catchall}",
+            new { controller = "Home", action = "Index" },
+            new { customConstraint = new UserAgentConstraint("Chrome") },
+            new[] { "UrlsAndRoutes.AdditionalControllers" });
+
          //id = "DefaultId"}); // Default is a reserved key word 
+         // type and value constraint 
+         routes.MapRoute("typeAndValue2", "{controller}/{action}/{id}/{*catchall}",
+           new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+           new {
+              controller = "^H.*",
+              action = "Index|About",
+              httpmethod = new HttpMethodConstraint("GET"),
+              id = new CompoundRouteConstraint(new IRouteConstraint[] {
+              new AlphaRouteConstraint(),
+              new MinLengthRouteConstraint(6)})
+           },
+           new[] { "UrlsAndRoutes.Controllers" });
+
+
+         routes.MapRoute("typeAndValue", "{controller}/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            new {
+               controller = "^H.*",
+               action = "Index|About",
+               httpmethod = new HttpMethodConstraint("GET"),
+               id = new RangeRouteConstraint(10, 20)
+            },
+            new[] { "UrlsAndRoutes.Controllers" });
+
+
+         // constraining a route using HTTP methods 
+         routes.MapRoute("RegEx3", "{controller}/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            new {
+               controller = "^H.*",
+               action = "Index|About",
+               HttpMethod = new HttpMethodConstraint("GET")
+            },
+            new[] { "UrlsAndRoutes.Controllers" }
+            );
+
+         // Constraining routes using regular expressions 
+
+
+         routes.MapRoute("RegEx2", "{controller}/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // default values 
+            new { controller = "^H.*", action = "^Index$|^About$" }, //  
+            new[] { "UrlsAndRoutes.Controllers" });
+
+         routes.MapRoute("RegEx", "{controller}/{action}/{id}/{*catchall}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // default values 
+            new { controller = "^H.*" }, // constraints : this route only matches routes that begin with H 
+            new[] { "UrlsAndRoutes.Controllers" });
+
+
+
 
          // support for variable length URL segments
-        
+
          Route myRoute = routes.MapRoute("AddControllerRoute", "Home/{action}/{id}/{*catchall}",
             new { controller = "Home", action = "Index", id = UrlParameter.Optional },
             new[] { "UrlsAndRoutes.AdditionalControllers" });
