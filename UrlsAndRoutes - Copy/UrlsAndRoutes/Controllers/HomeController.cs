@@ -32,12 +32,6 @@ namespace UrlsAndRoutes.Controllers {
          return View(); // return default view (CustomVariable.cshtml
       }
 
-      public RedirectToRouteResult MyActionMethod() {
-         string myActionUrl = Url.Action("Index", new { id = "MyId" });
-         string myRouteUrl = Url.RouteUrl(new { controller = "Home", action = "Index" });
-         return RedirectToRoute(new { controller = "Home", action = "Index", id = "MyID" });
-      }
-
 
 
    }

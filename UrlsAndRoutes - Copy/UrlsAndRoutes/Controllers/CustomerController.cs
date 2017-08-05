@@ -11,7 +11,7 @@ namespace UrlsAndRoutes.Controllers {
 
 
       // GET: Customer
-      [Route("~/Test")] // will be accessed as ~/Test
+      [Route("~Test")] // will be accessed as ~/Test
       public ActionResult Index() {
          ViewBag.Controller = "Customer";
          ViewBag.Action = "Index";
@@ -25,7 +25,7 @@ namespace UrlsAndRoutes.Controllers {
       }
 
 
-      [Route("Add/{user}/{id:int}", Name ="AddRoute")]  // note id is constained to ints
+      [Route("Add/{user}/{id:int}")]  // note id is constained to ints
       public string Create(string user, int id) {
          return string.Format("User: {0}, ID: {1}", user, id);
       }
