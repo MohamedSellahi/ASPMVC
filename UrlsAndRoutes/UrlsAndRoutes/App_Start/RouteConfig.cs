@@ -13,7 +13,6 @@ namespace UrlsAndRoutes {
       public static void RegisterRoutes(RouteCollection routes) {
 
          routes.MapMvcAttributeRoutes();
-
          routes.MapRoute("MyRoute1", "{controller}/{action}/{id}",
             new {
                controller = "Home",
@@ -35,7 +34,6 @@ namespace UrlsAndRoutes {
             );
          routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
       }
-
 
       //public static void RegisterRoutes(RouteCollection routes) {
 
