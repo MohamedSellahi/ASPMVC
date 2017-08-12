@@ -7,8 +7,6 @@ using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 using SportsStore.WebUI.Models;
 
-
-
 namespace SportsStore.WebUI.Controllers {
    public class ProductController : Controller {
 
@@ -39,6 +37,7 @@ namespace SportsStore.WebUI.Controllers {
          };
          return View(model);
       }
+
 
       // get product  image from data base 
       public FileContentResult GetImage(int productId) {

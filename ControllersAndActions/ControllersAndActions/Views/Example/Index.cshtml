@@ -1,0 +1,16 @@
+﻿
+@{
+   ViewBag.Title = "Index";
+}
+
+@if (TempData["Message"] != null) {
+   <h2>The message: @TempData["Message"] </h2>
+}
+
+<p>
+   <div>@ViewBag.Message</div>
+   <div>@ViewBag.Date.DayOfWeek</div>
+</p>
+<p>
+   Message stil here ? : @TempData["Message"]
+</p>
