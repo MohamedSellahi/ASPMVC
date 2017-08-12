@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ControllersAndActions.Infrastructure;
+
 
 namespace ControllersAndActions.Controllers {
    public class DerivedController : Controller {
@@ -17,16 +19,22 @@ namespace ControllersAndActions.Controllers {
          return View();
       }
 
-      public void ProduceOutput() {
-
-         if (Server.MachineName == "TINY") {
-            Response.Redirect("/Basic/Index");
-         }
-         else {
-            Response.Write("Controller: Derived, Action: ProductOutpt");
-         }
+      public RedirectToRouteResult ProduceOutput() {
+         //return new RedirectResult("Basic/Index");
+         return RedirectToAction("Index","Basic");
       }
 
+
+      public ActionResult ProduceOutput2() {
+         if (Server.MachineName == "TYNY") {
+            return new CustomRedirectResult { Url = "Basic/Index" };
+         }
+         else {
+            Response.Write(string.Format("Controller: Derived, Action: ProductOut2\n machine name:" +
+               "{0}", Server.MachineName));
+            return null;
+         }
+      }
       // GET: Derived
       public ActionResult Index() {
          ViewBag.Message = "Hello from the Derived Controller Index method";
