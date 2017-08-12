@@ -1,0 +1,58 @@
+﻿@model string
+@{
+   Layout = null;
+}
+
+@*Inline Custom Helper Method*@
+@helper ListArrayItems(string[] items) {
+    <ul>
+        @foreach (string str in items) {
+        <li>
+            @str
+        </li>
+        }
+    </ul>
+}
+@using HelperMethods.Infrastructure;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        Here are the fruits:
+        @foreach (string str in (string[])ViewBag.Fruits) {
+        <b>@str </b>
+        }
+    </div>
+    <div>
+        Here are the cities:
+        @foreach (string str in (string[])ViewBag.Cities) {
+        <b>@str </b>
+        }
+    </div>
+    <div>
+        Here is the message:
+        <p>@Model</p>
+    </div>
+
+    <hr />
+    <p>Using the Inline helper method</p>
+    <div>
+        @*The fruits: @ListArrayItems(ViewBag.Fruits)*@
+        The fruits: @Html.ListArrayItems((string[])ViewBag.Fruits)
+    </div>
+    <div>
+        @*The Cities: @ListArrayItems(ViewBag.Cities)*@
+        The cities: @Html.ListArrayItems((string[])ViewBag.Cities)
+    </div>
+    <p>This is the contents from the helper method:</p>
+    <div style="border: thin solid black; padding:10px;">
+        @Html.DisplayMessage(Model);
+    </div>
+</body>
+</html>

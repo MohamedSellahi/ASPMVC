@@ -1,0 +1,54 @@
+﻿
+@{
+   Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ActionName</title>
+</head>
+<body>
+    <div>The controller is: @ViewBag.Controller</div>
+    <div>The action is: @ViewBag.Action</div>
+    <div>
+        @Html.ActionLink("This is an outgoing URL", "CustomVariable")
+    </div>
+    <div>
+        @Html.ActionLink("This targets another controller", "Index", "Admin")
+    </div>
+    <div>
+        @Html.ActionLink("This targets a route usin the Route attribute", "Index", "Customer")
+    </div>
+    <div>
+        @Html.ActionLink("This is an outgonoing url with segment variables",
+      "CustomVariable", new { id = "Hello" })
+    </div>
+    <div>
+        @Html.ActionLink("declared with id = Hello", "CustomVariable", new { id = "Hello" })
+    </div>
+    <div>
+        @Html.ActionLink("anchor link with attributes", "Index", "Home", null,
+       new { id = "myAnchoerID", @class = "myCssClass", otherattribe = "other" })
+    </div>
+    <div>
+        @Html.ActionLink("FullyQualified URL", "Index", "Home",
+      "https", "myserver.mydomain.com", "myFragmentName",
+      new { id = "MyId" },
+      new { id = "myAnchorID", @class = "myCssClass}" });
+    </div>
+
+    <div>
+        this is a URL:
+        @Url.Action("Index", "Home", new { id = "MyId"}, "https")
+    </div>
+    <div>
+        @Html.ActionLink("ActionMethod", "MyActionMethod", "Home");
+    </div>
+    <div>
+        @Html.RouteLink("This uses the route link method", "MyOtherRoute", "Index", "Customer");
+    </div>
+</body>
+</html>

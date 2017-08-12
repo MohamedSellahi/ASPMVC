@@ -1,0 +1,57 @@
+HTml Helpers 
+
+
+@*@using (Html.BeginForm("CreatePerson", "Home",
+   new { id = "MyIdValue" }, FormMethod.Post,
+   new { @class = "personClass", data_formType = "person" }
+            )) {*@
+
+@using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post,
+                              new { @class = "pesonClass", data_formType = "person" })) {
+
+   <div class="dataElem">
+      <label>PersonId</label>
+      @Html.Editor("PersonId")
+      @*@Html.TextBoxFor(x => x.PersonId)*@
+      @*@Html.TextBox("personId",Model.PersonId)*@
+      @*<input name="personId" value="@Model.PersonId" />*@
+   </div>
+
+   <div class="dataElem">
+      <label>First Name</label>
+      @Html.Editor("FirstName")
+      @*@Html.TextBoxFor(x => x.FirstName)*@
+      @*@Html.TextBox("firstName",Model.FirstName)*@
+      @*<input name="fastName" value="@Model.FirstName" />*@
+   </div>
+
+   <div class="dataElem">
+      <label>Last Name</label>
+      @Html.EditorFor(x=>x.LastName)
+      @*@Html.TextBoxFor(x => x.LastName)*@
+      @*@Html.TextBox("lastName",Model.LastName)*@
+      @*<input name="lastName" value="@Model.LastName" />*@
+   </div>
+
+   <div class="dataElem">
+      <label>Role</label>
+      @Html.EditorFor(x=>x.Role)
+      @*@Html.DropDownListFor(x => x.Role,
+               new SelectList(Enum.GetNames(typeof(HelperMethods.Models.Role))))*@
+    
+   </div>
+   <div class="dataElem">
+      <label>Birth Date</label>
+      @Html.EditorFor(m=>m.BirthDate)
+   </div>
+
+   <input type="submit" value="Submit" />
+
+   <hr />
+   @*<p>
+      @Html.DropDownList("myList", new SelectList(new[] { "A", "B" }), "Choose")
+      @Html.ListBox("myList", new SelectList(new[] { "A", "B" }))
+
+   </p>*@
+
+}
