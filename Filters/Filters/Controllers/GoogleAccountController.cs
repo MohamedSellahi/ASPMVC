@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 namespace Filters.Controllers {
-   public class AccountController : Controller {
+   public class GoogleAccountController : Controller {
 
       public ActionResult Login() {
          return View();
@@ -14,11 +14,9 @@ namespace Filters.Controllers {
 
       [HttpPost]
       public ActionResult Login(string username, string password, string returnUrl) {
-         bool result = FormsAuthentication.Authenticate(username, password);
-         if (result) {
-            FormsAuthentication.SetAuthCookie(username, true);
-            return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
-            //return Redirect(Url.Action("Index", "Admin"));
+         if (username.EndsWith("@google.com") && password == "12345") {
+            FormsAuthentication.SetAuthCookie(username, false);
+            return Redirect(returnUrl ?? Url.Action("Index", "Home"));
          }
          else {
             ModelState.AddModelError("", "Incorrect username or password");
@@ -27,6 +25,9 @@ namespace Filters.Controllers {
       }
 
 
-
+      // GET: GoogleAccount
+      public ActionResult Index() {
+         return View();
+      }
    }
 }
