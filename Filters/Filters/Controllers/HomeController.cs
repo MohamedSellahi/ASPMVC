@@ -9,7 +9,8 @@ namespace Filters.Controllers {
    public class HomeController : Controller {
 
       // GET: Home
-      [CustomAuth(false)]
+      //[CustomAuth(false)]
+      [Authorize(Users ="admin")]
       public string Index() {
          return "This is the Index action on the Home controller";
       }

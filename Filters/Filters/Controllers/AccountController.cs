@@ -17,8 +17,8 @@ namespace Filters.Controllers {
          bool result = FormsAuthentication.Authenticate(username, password);
          if (result) {
             FormsAuthentication.SetAuthCookie(username, true);
-            //return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
-            return Redirect(Url.Action("Index", "Admin"));
+            return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+            //return Redirect(Url.Action("Index", "Admin"));
          }
          else {
             ModelState.AddModelError("", "Incorrect username or password");
