@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+   <meta name="viewport" content="width=device-width" />
+   <title>@ViewBag.Title</title>
+   <style>
+      div.layout {
+         background-color: grey;
+         color: white;
+      }
+
+      div.view {
+         border: thin solid black;
+         margin: 10px 0;
+      }
+   </style>
+</head>
+<body>
+   
+   @RenderSection("Header",false) @*false is for specifiying optional sections*@ 
+
+   <div class="layout">
+      This is part of the layout
+   </div>
+
+   @RenderSection("Body")
+
+   <div class="layout">
+      This is part of the layout
+   </div>
+   @if (IsSectionDefined("Footer")) {
+      @RenderSection("Footer")
+   }
+   else {
+      <h4>This is the default footer</h4>
+   }
+
+
+   <div class="layout">
+      This is part of the layout
+   </div>
+
+   @RenderSection("scripts",false)
+
+</body>
+</html>
