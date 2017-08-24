@@ -9,4 +9,4 @@
 
 @Html.Partial("MyStronglyTypedPartial", new string[] {"Apple","Orange","Pear"})
 
-@Html.Action("Time")
+@Html.Action("Time", new { time = DateTime.Now})

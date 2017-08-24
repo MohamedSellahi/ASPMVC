@@ -10,6 +10,9 @@ namespace HelperMethods {
       public static void RegisterRoutes(RouteCollection routes) {
          routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+         //routes.MapRoute("MyRoute", "{controller}/{action}/{selectedRole}",
+         //   new {controller = "People", action="Index",id = UrlParameter.Optional });
+
          routes.MapRoute(
              name: "Default",
              url: "{controller}/{action}/{id}",
