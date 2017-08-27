@@ -1,0 +1,70 @@
+﻿@using HelperMethods.Models
+@model string
+
+@{
+   ViewBag.Title = "getPeople";
+   Layout = "~/Views/Shared/_Layout.cshtml";
+   AjaxOptions ajaxOpts = new AjaxOptions() {
+      UpdateTargetId = "tableBody",
+      InsertionMode = InsertionMode.Replace,
+      LoadingElementDuration = 1000,
+      LoadingElementId = "loading",
+      Url = Url.Action("getPeopleData"),
+      Confirm = "Do you wish to request new data"
+   };
+}
+
+<h2>Get People</h2>
+
+<div id="loading" class="load" style="display:none">
+   <h2>Loading ...</h2>
+</div>
+
+<table>
+   <thead><tr>First</tr><tr>Last</tr><tr>Role</tr></thead>
+   <tbody id="tableBody">
+      @Html.Action("getPeopleData", new { selectedRole = Model })
+      @*@foreach (Person p in Model) {
+            <tr>
+               <td>@p.FirstName</td>
+               <td>@p.LastName</td>
+               <td>@p.Role</td>
+            </tr>
+         }*@
+   </tbody>
+</table>
+
+@*@using (Ajax.BeginForm("getPeopleData", ajaxOpts)) {*@
+@using (Ajax.BeginForm(ajaxOpts)) {
+   <div>
+      @Html.DropDownList("selectedRole", new SelectList(
+    new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
+      <button type="submit">Submit</button>
+   </div>
+}
+<div>
+   <div class="ajaxLink">
+      @Ajax.ActionLink("All", "getPeopleData", new { selectedRole = "All" },
+       new AjaxOptions {
+          UpdateTargetId = "tableBody",
+          Url = Url.Action("getPeopleData",new { selectedRole = "All"})
+       })
+   </div>
+   @foreach (string role in Enum.GetNames(typeof(Role))) {
+      <div class="ajaxLink">
+         @Ajax.ActionLink(role,"getPeopleData", new {selectedRole=role},
+       new AjaxOptions {
+          UpdateTargetId = "tableBody",
+          Url = Url.Action("getPeopleData", new { selectedRole = role})
+       })
+      </div>
+   }
+</div>
+
+@*@using (Html.BeginForm()) {
+      <div>
+         @Html.DropDownList("selectedRole", new SelectList(
+       new[] { "All"}.Concat(Enum.GetNames(typeof(Role)))))
+         <button type="submit">Submit</button>
+      </div>
+   }*@
