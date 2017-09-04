@@ -37,14 +37,60 @@ namespace HelperMethods.Controllers {
       //   }
       //}
 
-      public PartialViewResult getPeopleData(string selectedRole ="All") {
+      //public PartialViewResult getPeopleData(string selectedRole ="All") {
+      //   IEnumerable<Person> data = personData;
+      //   if (selectedRole != "All") {
+      //      Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
+      //      data = personData.Where(p => p.Role == selected);
+      //   }
+      //   return PartialView(data);
+      //}
+
+      private IEnumerable<Person> getData(string selectedRole) {
          IEnumerable<Person> data = personData;
-         if (selectedRole != "All") {
+         if (selectedRole !="All") {
             Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
             data = personData.Where(p => p.Role == selected);
          }
-         return PartialView(data);
+         return data;
       }
+
+      //public JsonResult getPeopleDataJSON(string selectedRole = "All") {
+      //   IEnumerable<Person> data = getData(selectedRole);
+      //   return Json(data, JsonRequestBehavior.AllowGet);
+      //}
+
+      public JsonResult getPeopleDataJSON(string selectedRole = "All") {
+         var data = getData(selectedRole).Select(p => new {
+            FirstName = p.FirstName,
+            LastName = p.LastName,
+            Role = Enum.GetName(typeof(Role), p.Role)
+         });
+         return Json(data, JsonRequestBehavior.AllowGet);
+      }
+
+      public PartialViewResult getPeopleData(string selectedRole = "All") {
+         return PartialView(getData(selectedRole));
+      }
+
+      //public ActionResult getPeopleData(string selectedRole = "All") {
+      //   IEnumerable<Person> data = personData;
+      //   if (selectedRole != "All") {
+      //      Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
+      //      data = personData.Where(p => p.Role == selected);
+      //   }
+      //   if (Request.IsAjaxRequest()) {
+      //      var formattedData = data.Select(p => new {
+      //         LastName = p.LastName,
+      //         FirstName = p.FirstName,
+      //         Role = Enum.GetName(typeof(Role), p.Role)
+      //      });
+      //      return Json(formattedData, JsonRequestBehavior.AllowGet);
+      //   }
+      //   else {
+      //      return PartialView(data);
+      //   }
+      //}
 
    }
 }

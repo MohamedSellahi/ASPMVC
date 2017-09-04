@@ -1,0 +1,17 @@
+﻿@model bool?
+@{ 
+   var notSet = ViewBag.NotSet ?? "pas définie";
+   var yes = ViewBag.TrueText ?? "Oui";
+   var no = ViewBag.FalseText ?? "Non";
+   var htmlAttributes = ViewBag.htmlAttribute ?? null;
+}
+
+@if (ViewData.ModelMetadata.IsNullableValueType) {
+   @Html.DropDownListFor(m => m,
+      new SelectList(
+         new []{
+         new SelectListItem {Text = notSet, Value = "", Selected = !Model.HasValue },
+         new SelectListItem {Text = yes, Value = "true", Selected = Model.HasValue && Model.Value },
+         new SelectListItem {Text = no, Value = "false", Selected = Model.HasValue && !Model.Value }
+      },"Value","Text"),(object)(htmlAttributes))
+   }

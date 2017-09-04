@@ -30,8 +30,8 @@ namespace HelperMethods.Models {
       public Address HomeAddress { get; set; }
 
       [Display(Name = "Approved")]
-      [UIHint("Boolean")]
-      public bool IsApproved { get; set; }
+      [UIHint("BooleanNullable")]
+      public bool? IsApproved { get; set; }
 
       [UIHint("Enum")]
       public Role Role { get; set; }

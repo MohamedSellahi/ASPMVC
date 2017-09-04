@@ -166,6 +166,7 @@
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\People\getPeople.cshtml" />
     <Content Include="Views\People\GetPeopleData.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BooleanNullable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

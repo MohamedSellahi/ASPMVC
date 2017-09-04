@@ -17,8 +17,13 @@
    </div>
 
    <input type="submit" value="Submit" />
-   
-  
+
+   @*<p>
+      @Html.DropDownList("myList", new SelectList(new[] { "A", "B" }), "Choose")
+   </p>*@
+   @Html.EditorFor(m => m.IsApproved,
+   new { NotSet = "ddd", TrueText = "fff", FalseText = "ggg" });
+ 
 }
 
 

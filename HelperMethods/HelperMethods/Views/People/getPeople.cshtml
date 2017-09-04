@@ -5,7 +5,7 @@
    ViewBag.Title = "getPeople";
    Layout = "~/Views/Shared/_Layout.cshtml";
    AjaxOptions ajaxOpts = new AjaxOptions() {
-      UpdateTargetId = "tableBody",
+      //UpdateTargetId = "tableBody",
       InsertionMode = InsertionMode.Replace,
       LoadingElementId = "loading",
       LoadingElementDuration = 1000,
@@ -13,6 +13,35 @@
       Url = Url.Action("getPeopleData")
    };
 }
+
+@*Ajax Callbacks*@
+<script type="text/javascript">
+   function processData(data) {
+      var target = $("#tableBody");
+      target.empty();
+      for (var i = 0; i < data.length; i++) {
+         var person = data[i];
+         target.append("<tr><td>" + person.FirstName + "</td><td>"
+            + person.LastName + "</td><td>" + person.Role + "</td></tr>");
+      }
+   }
+   //function OnBegin() {
+   //   alert("this is the OnBeginEvent");
+   //}
+
+   //function onSuccess(data) {
+   //   alert("This is the OnSuccessCallback: "+ data);
+   //}
+
+   //function OnFailure(request, error) {
+   //   alert("This is the OnFailure Callback: " + error );
+   //}
+
+   //function OnComplete(request, status) {
+   //   alert("This is the OnComplete Callback: " + status);
+   //}
+
+</script> 
 
 <h2>getPeople</h2>
 
@@ -49,9 +78,13 @@
    @foreach (string role in Enum.GetNames(typeof(Role))) {
       <div class="ajaxLink">
          @*@Ajax.ActionLink(role,"getPeopleData",new { selectedRole = role},new AjaxOptions { UpdateTargetId = "tableBody"})*@
-         @Ajax.ActionLink(role,"getPeopleData",
-       "getPeopleData", new { selectedRole = role },
-       new AjaxOptions { UpdateTargetId = "tableBody",Url=Url.Action("getPeopleData",new {selectedRole=role }) })
+         @Ajax.ActionLink(role, "getPeopleData",
+          new { selectedRole = role },
+          new AjaxOptions {
+          UpdateTargetId = "tableBody",
+          Url = Url.Action("getPeopleDataJSON", new { selectedRole = role }),
+          OnSuccess = "processData"
+       })
       </div>
    }
 </div> 
