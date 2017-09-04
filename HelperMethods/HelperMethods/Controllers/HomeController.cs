@@ -23,7 +23,7 @@ namespace HelperMethods.Controllers {
 
       [HttpPost]
       public ActionResult CreatePerson(Person person) {
-         return View("DisplayPerson",person);
+         return View("DisplayPerson", person);
       }
 
 
