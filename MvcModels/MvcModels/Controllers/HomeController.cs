@@ -34,8 +34,30 @@ namespace MvcModels.Controllers {
       // use the bind attribute to tell MVC how to partially bind 
       // the model
       // [Bind(Prefix ="HomeAddress", Exclude ="Country")]
-      public ActionResult DisplaySummary([Bind(Prefix ="HomeAddress")]AddressSummary summary) {
+      public ActionResult DisplaySummary([Bind(Prefix = "HomeAddress")]AddressSummary summary) {
          return View(summary);
+      }
+
+      public ActionResult Names(IList<string> names) {
+         names = names ?? new List<string>();
+         return View(names);
+      }
+
+      //public ActionResult Address(IList<AddressSummary> addresses) {
+      //   addresses = addresses ?? new List<AddressSummary>();
+      //   return View(addresses);
+      //}
+      public ActionResult Address(FormCollection formData) {
+         IList<AddressSummary> addresses = new List<AddressSummary>();
+         // restricting the binder to form data
+         //UpdateModel(addresses, new FormValueProvider(ControllerContext));
+         try {
+            UpdateModel(addresses, formData);
+         }
+         catch (InvalidOperationException e) {
+            // provide feedback to the user
+         }
+         return View(addresses);
       }
    }
 }
