@@ -47,16 +47,17 @@ namespace MvcModels.Controllers {
       //   addresses = addresses ?? new List<AddressSummary>();
       //   return View(addresses);
       //}
-      public ActionResult Address(FormCollection formData) {
+      public ActionResult Address() {
          IList<AddressSummary> addresses = new List<AddressSummary>();
+         UpdateModel(addresses);
          // restricting the binder to form data
          //UpdateModel(addresses, new FormValueProvider(ControllerContext));
-         try {
-            UpdateModel(addresses, formData);
-         }
-         catch (InvalidOperationException e) {
-            // provide feedback to the user
-         }
+         //try {
+         //   UpdateModel(addresses, formData);
+         //}
+         //catch (InvalidOperationException e) {
+         //   // provide feedback to the user
+         //}
          return View(addresses);
       }
    }

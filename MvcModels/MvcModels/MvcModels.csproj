@@ -127,6 +127,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructre\AddressSummaryBinder.cs" />
     <Compile Include="Infrastructre\CountryValueProvider.cs" />
     <Compile Include="Infrastructre\CustomValueProviderFactory.cs" />
     <Compile Include="Models\AddressSummary.cs" />

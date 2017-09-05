@@ -8,7 +8,7 @@ namespace MvcModels.Infrastructre {
    public class CustomValueProviderFactory : ValueProviderFactory {
 
       public override IValueProvider GetValueProvider(ControllerContext controllerContext) {
-         return new CountryValueProvider() as IValueProvider;
+         return new CountryValueProvider();
       }
 
    }
