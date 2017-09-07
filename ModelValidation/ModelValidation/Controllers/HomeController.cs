@@ -1,8 +1,6 @@
 ﻿using ModelValidation.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace ModelValidation.Controllers {
@@ -13,18 +11,18 @@ namespace ModelValidation.Controllers {
 
       [HttpPost]
       public ViewResult makeBooking(Appointment appt) {
-         //Explicite validation of the model 
-         if (string.IsNullOrEmpty(appt.ClientName)) {
-            ModelState.AddModelError("ClientName", "Please enter your name");
-         }
+         //Explicite validation of the model
+         //if (string.IsNullOrEmpty(appt.ClientName)) {
+         //   ModelState.AddModelError("ClientName", "Please enter your name");
+         //}
 
-         if (ModelState.IsValidField("Date") && DateTime.Now > appt.Date) {
-            ModelState.AddModelError("Date", "Plase enter a date in the future");
-         }
+         //if (ModelState.IsValidField("Date") && DateTime.Now > appt.Date) {
+         //   ModelState.AddModelError("Date", "Plase enter a date in the future");
+         //}
 
-         if (!appt.TermsAccepted) {
-            ModelState.AddModelError("TermsAccepted", "You must accept the terms");
-         }
+         //if (!appt.TermsAccepted) {
+         //   ModelState.AddModelError("TermsAccepted", "You must accept the terms");
+         //}
          if (ModelState.IsValid) {
             // Store new appointment here 
             return View("Completed", (object)appt);
