@@ -32,6 +32,19 @@ namespace ModelValidation.Controllers {
          }
       }
 
+      public JsonResult validateDate(string date) {
+         DateTime parsedDate;
+         if (!DateTime.TryParse(date, out parsedDate)) {
+            return Json("Please enter a valid date (mm/dd/yyyy)", JsonRequestBehavior.AllowGet);
+         }
+         else if (DateTime.Now > parsedDate) {
+            return Json("Please enter a date in the future", JsonRequestBehavior.AllowGet);
+         }
+         else {
+            return Json(true, JsonRequestBehavior.AllowGet);
+         }
+      }
+
       // GET: Home
       //public ActionResult Index() {
       //   return View();
