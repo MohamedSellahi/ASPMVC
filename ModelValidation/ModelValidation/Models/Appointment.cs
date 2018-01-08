@@ -66,7 +66,7 @@ namespace ModelValidation.Models {
       [Remote("validateDate","Home")]
       public DateTime Date { get; set; }
 
-      public bool TermsAccepted { get; set; }
+      public bool TermsAccepted { get; set; };
 
       //[UIHint("Boolean2")]
       //public bool TermsAccepted2 { get; set; }
