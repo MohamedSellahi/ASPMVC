@@ -7,9 +7,9 @@ using System.Web;
 
 namespace Users.Models
 {
-   public class AppIdentityContext:IdentityDbContext<AppUser>
+   public class AppIdentityDbContext:IdentityDbContext<AppUser>
    {
-      public AppIdentityContext():base("IdentityDb")
+      public AppIdentityDbContext():base("IdentityDb")
       {
 
       }
@@ -17,18 +17,18 @@ namespace Users.Models
       /// <summary>
       /// static constructor
       /// </summary>
-      static AppIdentityContext()
+      static AppIdentityDbContext()
       {
-         Database.SetInitializer<AppIdentityContext>(new IdentityDbInit()); 
+         //Database.SetInitializer(new IdentityDbInit());
       }
 
       /// <summary>
-      /// simple factory method for <see cref="AppIdentityContext"/>
+      /// simple factory method for <see cref="AppIdentityDbContext"/>
       /// </summary>
       /// <returns></returns>
-      public static AppIdentityContext Create()
+      public static AppIdentityDbContext Create()
       {
-         return new AppIdentityContext();
+         return new AppIdentityDbContext();
       }
    }
 }

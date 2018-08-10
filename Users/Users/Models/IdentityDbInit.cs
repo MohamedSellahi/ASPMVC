@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace Users.Models
 {
-   public class IdentityDbInit : DropCreateDatabaseIfModelChanges<AppIdentityContext>
+   public class IdentityDbInit : DropCreateDatabaseAlways<AppIdentityDbContext>
    {
-      public override void InitializeDatabase(AppIdentityContext context)
+      public override void InitializeDatabase(AppIdentityDbContext context)
       {
          PerformeInitialSetup(context);
          base.Seed(context);
@@ -14,7 +14,7 @@ namespace Users.Models
       /// performs initial setup 
       /// </summary>
       /// <param name="context"></param>
-      private void PerformeInitialSetup(AppIdentityContext context)
+      private void PerformeInitialSetup(AppIdentityDbContext context)
       {
          // init will go here 
       }
