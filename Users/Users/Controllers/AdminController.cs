@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Users.Controllers
 {
+   [Authorize(Roles = "Administrators")]
    public class AdminController : Controller
    {
       public AppUserManager UserManager

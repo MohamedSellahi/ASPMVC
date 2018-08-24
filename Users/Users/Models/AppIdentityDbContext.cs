@@ -19,7 +19,7 @@ namespace Users.Models
       /// </summary>
       static AppIdentityDbContext()
       {
-         //Database.SetInitializer(new IdentityDbInit());
+         Database.SetInitializer(new IdentityDbInit());
       }
 
       /// <summary>
